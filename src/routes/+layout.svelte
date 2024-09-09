@@ -2,15 +2,14 @@
 	import "../app.css";
 </script>
 
-<div class="flex flex-col h-screen justify-between">
-	<main>
-		<slot />
-	</main>
+<main class="container mx-auto flex flex-col justify-center items-center">
+    <slot />
+</main>
 
-	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-	</footer>
-</div>
-
-<style>
-</style>
+<footer class="bg-gray-100 py-4 fixed bottom-0 w-full">
+    <div class="container mx-auto text-center">
+        <p class="text-gray-600 text-sm">
+            Developed with 💙 by <span class="font-semibold text-gray-800">Silvia Popova</span>
+        </p>
+    </div>
+</footer>
