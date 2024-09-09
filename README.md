@@ -1,11 +1,10 @@
 # PawPortal
-![veterinary clinic banner with people](image.png)
-
 PawPortal is a user-friendly platform designed for a veterinary clinic and its clients - pet owners, to streamline pet health management. The app allows a vet to manage appointments, track pet health records, and communicate directly with pet owners. Pet owners can easily book appointments, view their pets' medical history, and receive important notifications, ensuring seamless care for their furry friends.
 
 This project is aimed at providing a convenient digital solution for better pet care and communication between a vet and his patients' owners.
 
-For an in-depth look at the research, analysis, planning, and design that went into this project, please visit the **[PawPortal Wiki](https://github.com/popo0015/PawPortal/wiki)**. 
+> [!IMPORTANT]  
+> For an in-depth look at the research, analysis, planning, and design that went into this project, please visit the **[PawPortal Wiki](https://github.com/popo0015/PawPortal/wiki)**. 
 
 The Wiki includes:
 - Detailed requirements and UCD
