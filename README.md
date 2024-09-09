@@ -1,5 +1,7 @@
 # PawPortal
-An application created for a veterenarian growing business.
+PawPortal is a user-friendly platform designed for a veterinary clinic and its clients - pet owners, to streamline pet health management. The app allows a vet to manage appointments, track pet health records, and communicate directly with pet owners. Pet owners can easily book appointments, view their pets' medical history, and receive important notifications, ensuring seamless care for their furry friends.
+
+This project is aimed at providing a convenient digital solution for better pet care and communication between a vet and his patients' owners.
 
 # Sveltekit tailwind boilerplate
 
