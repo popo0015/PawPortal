@@ -14,7 +14,8 @@ This project demonstrates my ability to handle end-to-end development, from idea
 
 # Sveltekit tailwind boilerplate
 
-I have used a Sveltekit and tailwind boilerplate from https://github.com/HZ-HBO-ICT/ms-svelte-tailwindcss-boilerplate - provided by rimmertzelle.
+> [!NOTE]  
+> I have used a Sveltekit and tailwind boilerplate from https://github.com/HZ-HBO-ICT/ms-svelte-tailwindcss-boilerplate - provided by rimmertzelle.
 
 ## Developing
 
