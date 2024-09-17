@@ -2,18 +2,18 @@
 	import { onMount } from 'svelte';
 	import TimeSlot from './TimeSlot.svelte';
 
-	let genericData = [];
+	let timeslots  = [];
 
 	onMount(async () => {
-		const response = await fetch('https://appointments-fe6c.onrender.com/api/v1/timeslots/');
+		const response = await fetch('http://localhost:3010/timeslots/');
 		const jsonData = await response.json();
 		// only read the data property from the response
-		genericData = jsonData.data;
+		timeslots  = jsonData.timeslots;
 	});
 </script>
 
-<div>
-    {#await genericData}
+<!-- <div>
+    {#await timeslots }
         <p class="text-center text-gray-600">Fetching timeslots...</p>
     {:then timeslotEntries}
         <section class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4">
@@ -24,5 +24,19 @@
             {/each}
         </section>
     {/await}
-</div>
+</div> -->
 
+<div>
+    {#if timeslots.length > 0}
+      <section class="grid 2xl:grid-cols-5 xl:lg:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
+        {#each timeslots as timeslot}
+          <article>
+            <TimeSlot timeslot={timeslot} />
+          </article>
+        {/each}
+      </section>
+    {:else}
+      <p class="text-center text-gray-600">Fetching timeslots...</p>
+    {/if}
+  </div>
+  

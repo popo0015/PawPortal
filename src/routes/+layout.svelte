@@ -13,7 +13,7 @@
 </style>
 
 <!-- Main layout -->
-<section class="flex 100vh">
+<section class="flex">
 	<!-- Sidebar Navigation -->
 	<header class={`fixed top-0 left-0 h-full bg-green-950 ${isNavOpen ? 'w-48' : 'w-16'} transition-width duration-300 ease-in-out`}>
 		<button class="flex items-center justify-center px-5 py-4 cursor-pointer" on:click={() => isNavOpen = !isNavOpen}>
@@ -40,7 +40,7 @@
 	</header>
 
 	<!-- Main content -->
-	<main class="ml-16 flex-1 p-8 transition-all duration-300" style={`margin-left: ${isNavOpen ? '12rem' : '4rem'}`}>
+	<main class="ml-16 mt-24 flex-1 p-8 transition-all duration-300" style={`margin-left: ${isNavOpen ? '12rem' : '4rem'}`}>
     <slot />
     </main>
 </section>
