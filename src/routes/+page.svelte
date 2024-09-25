@@ -2,6 +2,15 @@
 	import Client from '$lib/components/Client.svelte';
 	import Clients from '$lib/components/Clients.svelte';
 	import TimeSlots from '$lib/components/TimeSlots.svelte';
+	import { setContext } from 'svelte';
+
+	let timeslots = [];
+	let appointments = [];
+	let todayAppointments = [];
+
+	setContext('apiReference', {
+		mainUrl: 'https://appointments-fe6c.onrender.com/api/v1'
+	});
 </script>
 
 <svelte:head>

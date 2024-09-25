@@ -1,19 +1,61 @@
 <script>
+	import { getContext, onMount } from 'svelte';
+
 	export let timeslot;
+	export let appointments;
+	export let selectedDateId;
+
+	let data = {};
+	let loading = true;
+	let error = null;
+
+	const apiUrl = `${getContext('apiReference').mainUrl}/timeslots/${timeslot.id}`;
+
+	// Fetching data on component mount
+	onMount(async () => {
+		try {
+			const response = await fetch(apiUrl);
+			if (!response.ok) {
+				throw new Error('Failed to fetch timeslot data');
+			}
+			data = await response.json();
+		} catch (err) {
+			error = err.message;
+		} finally {
+			loading = false;
+		}
+	});
+
+	// Reactive declaration to check for appointment when selectedDateId changes
+	$: appointmentForTimeslot = appointments.find(appointment => 
+		appointment.theDateId === selectedDateId && appointment.timeslotId === timeslot.id
+	);
 </script>
 
-<div
-  class="flex flex-col w-full border-l-4 p-2 rounded-lg shadow-sm overflow-hidden transition-all duration-300 ease-in-out
-  {timeslot.appointment ? 'bg-gray-200 border-gray-400' : 'bg-white border-green-200 hover:border-green-500 hover:bg-green-50'}"
-  style="{timeslot.appointment ? 'background-image: repeating-linear-gradient(45deg, rgba(150, 150, 150, 0.1) 0%, rgba(150, 150, 150, 0.1) 15%, transparent 15%, transparent 50%); background-size: 10px 10px;' : ''}">
-  <div class="flex items-center justify-center {timeslot.appointment ? 'text-gray-700' : 'text-green-700'}">
-    <p>{timeslot.starttime ? timeslot.starttime : 'No Time'}</p>
-  </div>
-  <div class="flex items-center justify-center">
-    {#if timeslot.appointment}
-      <p class="overflow-hidden whitespace-nowrap text-ellipsis">{timeslot.appointment.name}</p>
-    {:else}
-      <p>Free</p>
-    {/if}
-  </div>
-</div>
+<!-- Loading state -->
+{#if loading}
+	<p>Loading...</p>
+{/if}
+
+<!-- Error state -->
+{#if error}
+	<p>Error: {error}</p>
+{/if}
+
+<!-- Render data when available -->
+{#if !loading && !error}
+	<div class="appointment cursor-pointer" id={timeslot.id}>
+		<ul class="flex flex-wrap justify-between border-2 bg-slate-100 rounded-lg {appointmentForTimeslot ? 'bg-slate-100 border-slate-300' : 'bg-green-100 border-green-300'}">
+			<li class="mr-2 p-2 rounded-l-lg">{data.starttime}</li>
+			<li class="mr-2 p-2">
+				{#if appointmentForTimeslot}
+					<span class="text-green-500">
+						{appointmentForTimeslot.name}
+					</span>
+				{:else}
+					<span class="text-gray-500">---</span>
+				{/if}
+			</li>
+		</ul>
+	</div>
+{/if}
