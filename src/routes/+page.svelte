@@ -21,7 +21,7 @@
 </svelte:head>
 
 <!-- Main container -->
-<main class=" mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<main class="mx-auto px-4 sm:px-6 lg:px-8 py-12">
 	<div class="text-center mb-8 relative">
 		<p class="text-3xl text-green-400 font-light absolute w-full" style="font-family: 'Satisfy', cursive; top: -25px;">
 			View possible
@@ -50,8 +50,7 @@
 		</p>
 		<h1 class="text-4xl md:text-5xl font-bold text-gray-900 relative z-10">Clients</h1>
 	</div>
-	<section
-		class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out p-8">
+	<section class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out p-8">
 		<Clients />
 	</section>
 </main>

@@ -31,7 +31,7 @@
                 <span class={`ml-4 ${isNavOpen ? 'block' : 'hidden'}`}>Appointments</span>
 			</a>
 
-			<a href="#" class="flex items-center justify-center hover:bg-gray-700 text-white px-4 py-2">
+			<a href="/" class="flex items-center justify-center hover:bg-gray-700 text-white px-4 py-2">
                 <img width="24" height="24" src="https://img.icons8.com/pulsar-line/24/search-client.png" alt="search-client"/>
                 <span class={`ml-4 ${isNavOpen ? 'block' : 'hidden'}`}>Clients</span>
 			</a>
@@ -39,7 +39,7 @@
 	</header>
 
 	<!-- Main content -->
-	<main class="ml-16 mt-24 flex-1 p-8 transition-all duration-300" style={`margin-left: ${isNavOpen ? '12rem' : '4rem'}`}>
+	<main class="ml-16 mt-24 p-8 transition-all duration-300">
     <slot />
     </main>
 </section>
