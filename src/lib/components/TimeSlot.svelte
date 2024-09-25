@@ -45,11 +45,11 @@
 <!-- Render data when available -->
 {#if !loading && !error}
 	<div class="appointment cursor-pointer" id={timeslot.id}>
-		<ul class="flex flex-wrap justify-between border-2 bg-slate-100 rounded-lg {appointmentForTimeslot ? 'bg-slate-100 border-slate-300' : 'bg-green-100 border-green-300'}">
+		<ul class="flex flex-wrap justify-between rounded-lg {appointmentForTimeslot ? 'border-2 bg-slate-100 border-slate-300' : 'bg-green-100'}">
 			<li class="mr-2 p-2 rounded-l-lg">{data.starttime}</li>
 			<li class="mr-2 p-2">
 				{#if appointmentForTimeslot}
-					<span class="text-green-500">
+					<span>
 						{appointmentForTimeslot.name}
 					</span>
 				{:else}

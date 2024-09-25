@@ -7,18 +7,34 @@
 	let loading = true;
 	let error = null;
 
-	let selectedDateId = 246;
+	let selectedDate = new Date();
+	let selectedDateId = calculateDateId(selectedDate);
+
+	// Store API reference context outside of onMount
+	const apiReference = getContext('apiReference');
+
+	// Function to calculate the Date ID
+	function calculateDateId(date) {
+		const start = new Date(date.getFullYear(), 0, 0);
+		const diff = date - start;
+		const oneDay = 1000 * 60 * 60 * 24;
+		return Math.floor(diff / oneDay);
+	}
+
+	// Update the Date ID when the user selects a new date
+	function handleDateChange(event) {
+		selectedDate = new Date(event.target.value);
+		selectedDateId = calculateDateId(selectedDate);
+	}
 
 	// Fetch timeslots and appointments
 	onMount(async () => {
 		try {
-			// Fetch timeslot URLs
-			const response = await fetch(`https://appointments-fe6c.onrender.com/api/v1/timeslots/`);
+			const response = await fetch(`${apiReference.mainUrl}/timeslots`);
 			if (!response.ok) throw new Error('Failed to fetch timeslot URLs');
 
 			const { data: timeslotUrls } = await response.json();
 
-			// Fetch timeslot details
 			timeslots = await Promise.all(
 				timeslotUrls.map(async (url) => {
 					const res = await fetch(`${getContext('apiReference').mainUrl}${url}`);
@@ -26,12 +42,11 @@
 				})
 			);
 
-			const appointmentResponse = await fetch(`${getContext('apiReference').mainUrl}/appointments`);
+			const appointmentResponse = await fetch(`${apiReference.mainUrl}/appointments`);
 			if (!appointmentResponse.ok) throw new Error('Failed to fetch appointments');
 
 			const { data: appointmentUrls } = await appointmentResponse.json();
 
-			// Fetch appointment details
 			appointments = await Promise.all(
 				appointmentUrls.map(async (url) => {
 					const res = await fetch(`${getContext('apiReference').mainUrl}${url}`);
@@ -46,15 +61,13 @@
 	});
 </script>
 
-<!-- Input field to allow the user to select a day -->
+<!-- Date picker input for selecting a date -->
 <div class="mb-4">
-	<label for="dateId" class="mr-2">Select a Date ID (1-365):</label>
+	<label for="date">Select a Date:</label>
 	<input
-		type="number"
-		id="dateId"
-		bind:value={selectedDateId}
-		min="1"
-		max="365"
+		type="date"
+		id="date"
+		on:change={handleDateChange}
 		class="border px-2 py-1"
 	/>
 </div>
