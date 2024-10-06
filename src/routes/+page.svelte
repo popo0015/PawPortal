@@ -23,7 +23,7 @@
 <!-- Main container -->
 <main class="mx-auto px-4 sm:px-6 lg:px-8 py-12">
 	<div class="text-center mb-8 relative">
-		<p class="text-3xl text-green-400 font-light absolute w-full" style="font-family: 'Satisfy', cursive; top: -25px;">
+		<p class="text-3xl text-teal-400 font-light absolute w-full" style="font-family: 'Satisfy', cursive; top: -25px;">
 			View possible
 		</p>
 		<h1 class="text-4xl md:text-5xl font-bold text-gray-900 relative z-10">Appointments</h1>
@@ -45,7 +45,7 @@
 
 	<!-- Clients Section -->
 	<div class="text-center mb-8 relative">
-		<p class="text-3xl text-green-400 font-light absolute w-full" style="font-family: 'Satisfy', cursive; top: -25px;">
+		<p class="text-3xl text-teal-400 font-light absolute w-full" style="font-family: 'Satisfy', cursive; top: -25px;">
 			View your
 		</p>
 		<h1 class="text-4xl md:text-5xl font-bold text-gray-900 relative z-10">Clients</h1>

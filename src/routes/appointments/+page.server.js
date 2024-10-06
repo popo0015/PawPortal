@@ -20,11 +20,11 @@ const getData = async (url) => {
  */
 export const load = async () => {
     // fetch appointments urls
-    const appUrls = await getData(`http://localhost:3012/api/v1/appointments/`);
+    const appUrls = await getData(`https://appointments-fe6c.onrender.com/api/v1/appointments/`);
     const appUrlsData = appUrls.data;
     
     // setup the promises
-    const promises = appUrlsData.map((url) => getData(`http://localhost:3012/api/v1${url}`));
+    const promises = appUrlsData.map((url) => getData(`https://appointments-fe6c.onrender.com/api/v1${url}`));
 
     // fetch all appointments
     try {

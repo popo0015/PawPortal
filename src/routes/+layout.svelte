@@ -21,17 +21,17 @@
 
 		<!-- Navigation Links -->
 		<nav class="flex flex-col space-y-6 mt-10">
-			<a href="/" class="flex items-center justify-center hover:bg-gray-700 text-white px-4 py-2">
+			<a href="/" class="flex items-center justify-center hover:bg-teal-500 text-white px-4 py-2">
                 <img width="24" height="24" src="https://img.icons8.com/fluency-systems-regular/24/home--v1.png" alt="home--v1"/>
                 <span class={`ml-4 ${isNavOpen ? 'block' : 'hidden'}`}>Home</span>
 			</a>
 
-			<a href="/appointments" class="flex items-center justify-center hover:bg-gray-700 text-white px-4 py-2">
+			<a href="/appointments" class="flex items-center justify-center hover:bg-teal-500 text-white px-4 py-2">
                 <img width="24" height="24" src="https://img.icons8.com/pastel-glyph/24/appointment-time.png" alt="appointment-time"/>
                 <span class={`ml-4 ${isNavOpen ? 'block' : 'hidden'}`}>Appointments</span>
 			</a>
 
-			<a href="/" class="flex items-center justify-center hover:bg-gray-700 text-white px-4 py-2">
+			<a href="/" class="flex items-center justify-center hover:bg-teal-500 text-white px-4 py-2">
                 <img width="24" height="24" src="https://img.icons8.com/pulsar-line/24/search-client.png" alt="search-client"/>
                 <span class={`ml-4 ${isNavOpen ? 'block' : 'hidden'}`}>Clients</span>
 			</a>
