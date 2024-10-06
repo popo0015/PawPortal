@@ -1,7 +1,7 @@
 <script>
 	import Client from '$lib/components/Client.svelte';
 	import Clients from '$lib/components/Clients.svelte';
-	import TimeSlots from '$lib/components/TimeSlots.svelte';
+	import DaySchedule from '$lib/components/DaySchedule.svelte';
 	import { setContext } from 'svelte';
 
 	let timeslots = [];
@@ -9,7 +9,7 @@
 	let todayAppointments = [];
 
 	setContext('apiReference', {
-		mainUrl: 'https://appointments-fe6c.onrender.com/api/v1'
+		mainUrl: 'https://appointments-fe6c.onrender.com/api/v1/'
 	});
 </script>
 
@@ -33,7 +33,7 @@
 		<!-- TimeSlots Card -->
 		<div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out p-8">
 			<h2 class="text-2xl font-semibold text-gray-800 mb-4">Available Time Slots</h2>
-			<TimeSlots />
+			<DaySchedule />
 		</div>
 
 		<!-- Client Card -->

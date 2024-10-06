@@ -1,23 +1,37 @@
-export const load = async (serverLoadEvent) => {
+/**
+ * Generic function to fetch data from a given url
+ * @param {string} url 
+ * @returns 
+ */
+const getData = async (url) => {
     try {
-        const { fetch } = serverLoadEvent;
-        const res = await fetch(`https://appointments-fe6c.onrender.com/api/v1/appointments/`);
+        const res = await fetch(url);
         const items = await res.json();
-
-        const appointments = await Promise.all(
-            items.data.map(async (url) => {
-                const appointmentRes = await fetch(`https://appointments-fe6c.onrender.com/api/v1${url}`);
-                if (!appointmentRes.ok) {
-                    throw new Error(`Failed to fetch details for ${url}`);
-                }
-                return await appointmentRes.json();
-            })
-        );
-
-        return { items: { data: appointments } };
+        return items;
     } catch (error) {
         return {
             error,
         };
+    }
+}
+/**
+ * Function to load appointments
+ * @returns {Promise<{appointments: any[]}>}
+ */
+export const load = async () => {
+    // fetch appointments urls
+    const appUrls = await getData(`http://localhost:3012/api/v1/appointments/`);
+    const appUrlsData = appUrls.data;
+    
+    // setup the promises
+    const promises = appUrlsData.map((url) => getData(`http://localhost:3012/api/v1${url}`));
+
+    // fetch all appointments
+    try {
+        const appointments = await Promise.all(promises);
+        return { appointments };
+    } catch (error) {
+        console.log('🐮', error);
+        return { error };
     }
 };

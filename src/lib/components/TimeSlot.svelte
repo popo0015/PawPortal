@@ -1,51 +1,37 @@
 <script>
-	import { getContext, onMount } from 'svelte';
+	import { appointment } from "$lib/stores/appointmentsStore";
+	export let contents;
 
-	export let timeslot;
-	export let appointments;
-	export let selectedDateId;
+	/**
+	 * This function displays the appointment details and sets the appointment store
+	 * @param selectedAppointment
+	 */
+	const displayAppointmentDetails = (selectedAppointment) => {
+		console.log(selectedAppointment);
+		$appointment.name = selectedAppointment.appointment.name;
+		$appointment.breed = selectedAppointment.appointment.breed;
+		$appointment.starttime = selectedAppointment.starttime;
+		$appointment.state = selectedAppointment.appointment.state;
 
-	let data = {};
-	let loading = true;
-	let error = null;
-
-	const apiUrl = `${getContext('apiReference').mainUrl}/timeslots/${timeslot.id}`;
-
-	// Fetching data on component mount
-	onMount(async () => {
-		try {
-			const response = await fetch(apiUrl);
-			if (!response.ok) {
-				throw new Error('Failed to fetch timeslot data');
-			}
-			data = await response.json();
-		} catch (err) {
-			error = err.message;
-		} finally {
-			loading = false;
-		}
-	});
-
-	// Reactive declaration to check for appointment when selectedDateId changes
-	$: appointmentForTimeslot = appointments.find(
-		(appointment) =>
-			appointment.theDateId === selectedDateId && appointment.timeslotId === timeslot.id
-	);
+	};
 </script>
 
-<!-- Loading state -->
-{#if loading}
-	<p>Loading...</p>
-{/if}
+<div class="appointment" id={contents.id}>
+	{#if contents.appointment}
+		<ul class="bg-amber-100 flex flex-wrap justify-between rounded-lg p-2">
+			<li class="rounded-l-lg p-1">{contents.starttime}</li>
+			<li class="p-1">{contents.appointment.name}</li>
+			<li class=""><button class="p-1 cursor-pointer hover:text-red-400 hover:rotate-45" on:click={() => displayAppointmentDetails(contents)}>⎋</button></li>
+		</ul>
+	{:else}
+		<ul class="flex flex-wrap justify-between bg-slate-100 rounded-lg">
+			<li class="bg-slate-100 mr-2 p-2 rounded-l-lg">{contents.starttime}</li>
+			<li class="bg-slate-100 mr-2 p-2">---</li>
+		</ul>
+	{/if}
+</div>
 
-<!-- Error state -->
-{#if error}
-	<p>Error: {error}</p>
-{/if}
-
-<!-- Render timeslot as a block -->
-{#if !loading && !error}
-	<div 
+<!-- <div 
 		class="mt-3 appointment cursor-pointer bg-opacity-80 transition-all absolute"
 		style="
 		top: calc(({parseInt(data.starttime.split('.')[0])} - 9) * 11rem + ({parseInt(
@@ -71,5 +57,4 @@
 				</div>
 			{/if}
 		</div>
-	</div>
-{/if}
+	</div> -->

@@ -1,50 +1,19 @@
 <script>
+	// data is a prop passed from the server
 	export let data;
-
-	function getDateFromDayOfYear(dayOfYear) {
-		const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-		let month = 0;
-
-		if (dayOfYear > 365) {
-			throw new Error('Day of year must be between 1 and 365');
-		}
-
-		while (dayOfYear > monthDays[month]) {
-			dayOfYear -= monthDays[month];
-			month++;
-		}
-
-		return `${dayOfYear}/${month + 1}`;
-	}
 </script>
 
-<section class="text-center">
-	<div class="text-center mb-8 relative">
-		<p class="text-3xl text-green-400 font-light absolute w-full" style="font-family: 'Satisfy', cursive; top: -25px;">
-			View possible
-		</p>
-		<h1 class="text-4xl md:text-5xl font-bold text-gray-900 relative z-10">Appointments</h1>
-	</div>
-
-	<table class="w-full border-collapse">
-		<thead>
-			<tr>
-				<th class="px-4 py-2">Date ID</th>
-				<th class="px-4 py-2">Timeslot</th>
-				<th class="px-4 py-2">Name</th>
-				<th class="px-4 py-2">Breed</th>
-				<th class="px-4 py-2">State</th>
-			</tr>
-		</thead>
+<section class="container">
+	<h2 class="text-center text-2xl my-6">Appointments</h2>
+	<table class="table-auto border-separate w-screen text-xs text-center">
+		<thead><tr><th>Date</th><th>Timeslot</th><th>Name</th><th>Breed</th><th>State</th></tr></thead>
 		<tbody>
-			{#each data.items.data as item, index}
-				<tr class={index % 2 === 0 ? 'bg-white' : 'bg-green-100'}>
-					<td class="px-4 py-2">{getDateFromDayOfYear(item.theDateId)}</td>
-					<td class="px-4 py-2">{item.timeslotId}</td>
-					<td class="px-4 py-2">{item.name}</td>
-					<td class="px-4 py-2">{item.breed}</td>
-					<td class="px-4 py-2">{item.state}</td>
-				</tr>
+			{#each data.appointments as item}
+				<tr class="odd:bg-white even:bg-slate-50 hover:bg-orange-50 hover:cursor-pointer"
+					><td class="p-3">{item.theDateId}</td><td>{item.timeslotId}</td><td>{item.name}</td><td
+						>{item.breed}</td
+					><td>{item.state}</td></tr
+				>
 			{/each}
 		</tbody>
 	</table>
